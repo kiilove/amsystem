@@ -1,61 +1,188 @@
-import React from "react";
+import moment from "moment";
+import { useRef } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import AutoCompleteCombo from "../components/AutoCompleteCombo";
+
+const category = [
+  { id: 1, title: "데스크탑", code: "desktop" },
+  { id: 2, title: "노트북", code: "notebook" },
+  { id: 3, title: "모니터", code: "monitor" },
+  { id: 4, title: "프린터", code: "printer" },
+  { id: 5, title: "서버", code: "server" },
+];
 
 const AssetIncome = () => {
+  const [inputs, setInputs] = useState({ incomePrice: 0 });
+  const priceRef = useRef("");
+
+  const handlePrice = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      incomePrice: value.replaceAll(",", ""),
+    });
+  };
+  useEffect(() => {
+    return () => {
+      console.log(inputs);
+    };
+  }, [inputs]);
+
   return (
-    <div
-      id="mainContainer"
-      className="flex w-full min-h-screen justify-center align-center items-center bg-gradient-to-r from-cyan-500 to-blue-500"
-    >
-      <div
-        id="mainCanvas"
-        className="flex w-4/6 bg-white rounded-lg shadow-lg bg-gray-100"
-        style={{ minHeight: "800px", height: "80%" }}
-      >
-        <div id="wrapper" className="flex flex-col p-10 box-border w-full">
-          <div id="topContainer" className="flex gap-4 w-full ">
-            <div
-              id="logoBox"
-              className="flex w-44 h-12  align-middle items-center justify-center"
-            >
-              <h1 className="font-bold text-lg">AM System</h1>
+    <div id="Container" className="flex w-full space-10 flex-col p-4">
+      <div className="flex flex-auto w-full h-full min-h-full bg-white rounded-md shadow-md p-5 flex-col">
+        <div className="flex justify-start items-center w-full mb-5 ">
+          <h1 className="text-sm font-semibold text-gray-700">자산입고</h1>
+        </div>
+        <div className="flex w-full h-full flex-col align-top p-10 space-y-3">
+          <div className="flex h-10">
+            <div className="flex bg-gray-100 w-1/5 justify-end mr-3 h-10 items-center">
+              <span className="flex mr-3 font-semibold text-base text-gray-500">
+                종류
+              </span>
             </div>
-            <div
-              id="locationBox"
-              className="flex align-middle items-center justify-start flex-1 "
-            >
-              <h1 className="font-thin text-sm text-gray-600 text-left">
-                현재위치 >{" "}
-                <span className="font-bold text-gray-700">자산입고</span>
-              </h1>
-            </div>
-            <div className="flex flex-1">
-              <div className="relative text-gray-600 focus-within:text-gray-400">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                  <button
-                    type="submit"
-                    className="p-1 focus:outline-none focus:shadow-outline "
-                  >
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      class="w-6 h-6"
-                    >
-                      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                  </button>
-                </span>
-                <input
-                  type="text"
-                  class="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                  placeholder="검색"
-                />
+            <div className="flex bg-white w-4/5">
+              <div className="flex w-5/6">
+                <select name="category" id="category">
+                  {category.map((item, idx) => (
+                    <option value={item.code} id={idx}>
+                      {item.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex w-1/5 justify-end">
+                <button className="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded">
+                  추가
+                </button>
               </div>
             </div>
           </div>
+          <div className="flex h-10">
+            <div className="flex bg-gray-100 w-1/5 justify-end mr-3 h-10 items-center">
+              <span className="flex mr-3 font-semibold text-base text-gray-500">
+                관리번호
+              </span>
+            </div>
+            <div className="flex bg-white w-4/5">
+              <input
+                type="text"
+                value={inputs.manageCode}
+                onChange={(e) => {
+                  setInputs({
+                    ...inputs,
+                    manageCode: e.target.value.toUpperCase(),
+                  });
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex h-10">
+            <div className="flex bg-gray-100 w-1/5 justify-end mr-3 h-10 items-center">
+              <span className="flex mr-3 font-semibold text-base text-gray-500">
+                모델명
+              </span>
+            </div>
+            <div className="flex bg-white w-4/5">
+              <input
+                type="text"
+                className="text"
+                value={inputs.modelCode}
+                onChange={(e) => {
+                  setInputs({
+                    ...inputs,
+                    modelCode: e.target.value.toUpperCase(),
+                  });
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex h-10">
+            <div className="flex bg-gray-100 w-1/5 justify-end mr-3 h-10 items-center">
+              <span className="flex mr-3 font-semibold text-base text-gray-500">
+                SN
+              </span>
+            </div>
+            <div className="flex bg-white w-4/5">
+              <input
+                type="text"
+                className="text"
+                value={inputs.sn}
+                onChange={(e) => {
+                  setInputs({ ...inputs, sn: e.target.value.toUpperCase() });
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex h-10">
+            <div className="flex bg-gray-100 w-1/5 justify-end mr-3 h-10 items-center">
+              <span className="flex mr-3 font-semibold text-base text-gray-500">
+                취득가격
+              </span>
+            </div>
+            <div className="flex bg-white w-4/5">
+              <input
+                type="text"
+                value={new Intl.NumberFormat().format(inputs.incomePrice)}
+                onFocus={(e) => {
+                  e.target.select();
+                }}
+                onChange={(e) => {
+                  handlePrice(e);
+                }}
+                style={{ textAlign: "right", padding: "10px" }}
+              />
+            </div>
+          </div>
+          <div className="flex h-10">
+            <div className="flex bg-gray-100 w-1/5 justify-end mr-3 h-10 items-center">
+              <span className="flex mr-3 font-semibold text-base text-gray-500">
+                취득일자
+              </span>
+            </div>
+            <div className="flex bg-white w-4/5">
+              <input
+                type="date"
+                defaultValue={moment().format("YYYY-MM-DD")}
+                value={inputs.incomeDate}
+                onChange={(e) => {
+                  setInputs({
+                    ...inputs,
+                    incomeDate: e.target.value,
+                  });
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex h-10">
+            <div className="flex bg-gray-100 w-1/5 justify-end mr-3 h-10 items-center">
+              <span className="flex mr-3 font-semibold text-base text-gray-500">
+                취득경로
+              </span>
+            </div>
+            <div className="flex bg-white w-4/5">
+              <input
+                type="text"
+                className="text"
+                value={inputs.partner}
+                onChange={(e) => {
+                  setInputs({
+                    ...inputs,
+                    partner: e.target.value,
+                  });
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex w-full justify-end p-10 space-x-5">
+          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            저장
+          </button>
+          <button className="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded">
+            취소
+          </button>
         </div>
       </div>
     </div>
