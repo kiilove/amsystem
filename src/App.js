@@ -7,18 +7,16 @@ import AssetMain from "./pages/AssetMain";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<AssetMain component={<AssetDashboard />} />}
-          ></Route>
-          <Route
-            path="/assetinput"
-            element={<AssetMain component={<AssetIncome />} />}
-          ></Route>
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<AssetMain component={<AssetDashboard />} />}
+        ></Route>
+        <Route
+          path="/assetinput"
+          element={<AssetMain component={<AssetIncome />} />}
+        ></Route>
+      </Routes>
     </div>
   );
 }
