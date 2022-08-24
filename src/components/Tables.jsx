@@ -2,11 +2,11 @@ import React from "react";
 
 const Tables = () => {
   return (
-    <div class="flex flex-col w-full">
+    <div className="flex flex-col w-full">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="px-6 inline-block min-w-full sm:px-3 lg:px-4">
-          <div class="overflow-hidden">
-            <table class="min-w-full">
+        <div class="px-6 inline-block min-w-full md:px-0 lg:px-4">
+          <div class="overflow-hidden p-5">
+            <table class="w-full">
               <thead class="bg-white border-b">
                 <tr>
                   <th

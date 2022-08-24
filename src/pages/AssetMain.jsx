@@ -12,19 +12,20 @@ const AssetMain = (props) => {
     >
       <div
         id="mainCanvas"
-        className="flex w-4/6 bg-white rounded-lg shadow-lg bg-gray-100"
+        className="flex flex-col sm:w-full md:w-full lg:w-11/12 xl:w-4/6 rounded-lg shadow-lg bg-gray-100 box-border flex-wrap"
         style={{ minHeight: "800px", height: "80%" }}
       >
-        <div id="wrapper" className="flex flex-col p-10 box-border w-full">
-          <div id="topContainer" className="flex w-full ">
-            <Top />
+        <div id="topContainer" className="flex">
+          <Top />
+        </div>
+        <div id="webMiddleContainer" className="hidden md:flex">
+          <div className="flex w-1/5">
+            <Menus />
           </div>
-          <div id="contentContainer" className="flex w-full space-x-10">
-            <div className="flex w-44">
-              <Menus />
-            </div>
-            <div className="flex w-full h-full">{props.component}</div>
-          </div>
+          <div className="flex w-4/5 sm:w-full md:w-4/5">{props.component}</div>
+        </div>
+        <div id="webMobileContainer" className="flex w-full sm:flex md:hidden">
+          <div className="flex w-full">{props.component}</div>
         </div>
       </div>
     </div>

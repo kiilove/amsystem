@@ -19,7 +19,7 @@ const data = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8819c9"];
 const AllAssetsGraph = () => {
   return (
-    <div id="Container" className="flex w-full h-full ">
+    <div id="Container" className="flex w-full h-full container">
       <div className="flex w-full p-4 flex-col">
         <div className="flex h-full w-full justify-center items-center bg-white rounded-md shadow-md p-5 box-border flex-col">
           <div className="flex justify-start items-center w-full mb-5 ">

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 const MenuList = [
   { id: 1, title: "대쉬보드", link: "/" },
-  { id: 2, title: "자산입고", link: "/assetinput" },
+  { id: 2, title: "전체자산", link: "/assets" },
+  { id: 3, title: "자산입고", link: "/assetinput" },
 ];
 const Menus = () => {
   return (

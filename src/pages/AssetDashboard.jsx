@@ -6,15 +6,15 @@ import LicenseGraph from "../components/LicenseGraph";
 
 const AssetDashboard = () => {
   return (
-    <div id="Container" className="flex w-full space-10 flex-col">
-      <div className="flex flex-auto w-full h-80">
+    <div id="Container" className="flex flex-col w-full box-border">
+      <div className="flex h-96 w-full ">
         <LicenseGraph />
       </div>
-      <div className="flex">
-        <div className="flex flex-auto w-1/3 h-80 ">
+      <div className="flex w-full flex-col lg:flex-row ">
+        <div className="flex w-full lg:w-1/2 h-96 box-border">
           <AllAssetsGraph />
         </div>
-        <div className="flex flex-auto w-1/3 box-border max-h-80">
+        <div className="flex w-full lg:w-1/2  h-96 box-border">
           <ArriveEndPoint />
         </div>
       </div>
