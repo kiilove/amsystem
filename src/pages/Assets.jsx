@@ -1,10 +1,8 @@
 import React from "react";
 import Tables from "../components/Tables";
+import { tableContent } from "../data";
 
 const Assets = () => {
-  const tableContent = {
-    header: ["#", "관리번호", "모델명", "사용자", "위치"],
-  };
   return (
     <div id="Container" className="flex w-full h-full space-10 flex-col p-4">
       <div className="flex flex-auto w-full h-full min-h-full bg-white rounded-md shadow-md p-5 flex-col">
@@ -12,7 +10,7 @@ const Assets = () => {
           <h1 className="text-sm font-semibold text-gray-700">전체자산</h1>
         </div>
         <div className="flex min-w-full">
-          <Tables />
+          <Tables data={tableContent} />
         </div>
       </div>
     </div>

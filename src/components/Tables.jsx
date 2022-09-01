@@ -1,16 +1,17 @@
 import React from "react";
 
 const Tables = (props) => {
+  console.log(props);
   return (
     <table className="w-full">
       <thead className="bg-white border-b">
         <tr>
-          {props.header.map((hItem, idx) => (
+          {props.data.header.map((hItem, idx) => (
             <th
               scope="col"
-              className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+              className="text-sm font-medium text-gray-900 px-6 py-4 "
             >
-              {hItem.text}
+              {hItem}
             </th>
           ))}
         </tr>

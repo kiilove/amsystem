@@ -1,4 +1,5 @@
 import React from "react";
+import { tableContent } from "../data";
 import Tables from "./Tables";
 
 const ArriveEndPoint = () => {
@@ -12,7 +13,7 @@ const ArriveEndPoint = () => {
             </h1>
           </div>
           <div className="flex">
-            <Tables />
+            <Tables data={tableContent} />
           </div>
         </div>
       </div>
